@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:time_tracker_flutter_course/app/home/models/job.dart';
 import 'package:time_tracker_flutter_course/custom_widgets/platform_alert_dialog.dart';
 import 'package:time_tracker_flutter_course/custom_widgets/platform_exception_alert_dialog.dart';
 import 'package:time_tracker_flutter_course/services/auth.dart';
 import 'package:time_tracker_flutter_course/services/database.dart';
-import 'package:time_tracker_flutter_course/app/home/models/job.dart';
+import 'package:flutter/services.dart';
 
 class JobsPage extends StatelessWidget {
   Future<void> _signOut(BuildContext context) async {
@@ -52,8 +52,10 @@ class JobsPage extends StatelessWidget {
       final database = Provider.of<Database>(context);
       await database.createJob(Job(name: 'Blogging', ratePerHour: 10));
     } on PlatformException catch (e) {
-      PlatformExceptionAlertDialog(title: 'operation failed', exception: e)
-          .show(context);
+      PlatformExceptionAlertDialog(
+        title: 'Operation failed',
+        exception: e,
+      ).show(context);
     }
   }
 
@@ -108,13 +110,9 @@ class JobsPage extends StatelessWidget {
           return ListView(children: children);
         }
         if (snapshot.hasError) {
-          return Center(
-            child: Text('Some error occured'),
-          );
+          return Center(child: Text('Some error occurred'));
         }
-        return Center(
-          child: CircularProgressIndicator(),
-        );
+        return Center(child: CircularProgressIndicator());
       },
     );
   }

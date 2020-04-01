@@ -6,9 +6,9 @@ class FirestoreService {
   static final instance = FirestoreService._();
 
   Future<void> setData({String path, Map<String, dynamic> data}) async {
-    final documentReference = Firestore.instance.document(path);
+    final reference = Firestore.instance.document(path);
     print('$path: $data');
-    await documentReference.setData(data);
+    await reference.setData(data);
   }
 
   Stream<List<T>> collectionStream<T>({
