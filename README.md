@@ -1,6 +1,6 @@
 # time_tracker_flutter_course
 
-A new Flutter project.
+A new Flutter project which is a time tracker app. It's tech stack comprises of flutter and firebase as its backend using a firestore's nosql databse. It helps users to create, update, delete their day to day tasks and to track them for increased productivity.
 
 ## Getting Started
 
