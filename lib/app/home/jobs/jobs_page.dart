@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:time_tracker_flutter_course/app/home/jobs/add_job_page.dart';
 import 'package:time_tracker_flutter_course/app/home/models/job.dart';
 import 'package:time_tracker_flutter_course/custom_widgets/platform_alert_dialog.dart';
-import 'package:time_tracker_flutter_course/custom_widgets/platform_exception_alert_dialog.dart';
 import 'package:time_tracker_flutter_course/services/auth.dart';
 import 'package:time_tracker_flutter_course/services/database.dart';
-import 'package:flutter/services.dart';
 
 class JobsPage extends StatelessWidget {
   Future<void> _signOut(BuildContext context) async {
@@ -47,18 +46,6 @@ class JobsPage extends StatelessWidget {
             ));
   }
 
-  Future<void> _createJob(BuildContext context) async {
-    try {
-      final database = Provider.of<Database>(context);
-      await database.createJob(Job(name: 'Blogging', ratePerHour: 10));
-    } on PlatformException catch (e) {
-      PlatformExceptionAlertDialog(
-        title: 'Operation failed',
-        exception: e,
-      ).show(context);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -94,7 +81,7 @@ class JobsPage extends StatelessWidget {
         body: _buildContents(context),
         floatingActionButton: FloatingActionButton(
             child: Icon(Icons.add, size: 35.0),
-            onPressed: () => _createJob(context)),
+            onPressed: () => AddJobPage.show(context)),
       ),
     );
   }
