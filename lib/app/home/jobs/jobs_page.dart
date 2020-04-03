@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:time_tracker_flutter_course/app/home/job_entries/job_entries_page.dart';
 import 'package:time_tracker_flutter_course/app/home/jobs/edit_job_page.dart';
 import 'package:time_tracker_flutter_course/app/home/jobs/jobs_list_file.dart';
 import 'package:time_tracker_flutter_course/app/home/jobs/list_items_builder.dart';
@@ -97,7 +98,10 @@ class JobsPage extends StatelessWidget {
         body: _buildContents(context),
         floatingActionButton: FloatingActionButton(
             child: Icon(Icons.add, size: 35.0),
-            onPressed: () => EditJobPage.show(context)),
+            onPressed: () => EditJobPage.show(
+                  context,
+                  database: Provider.of<Database>(context),
+                )),
       ),
     );
   }
@@ -116,7 +120,7 @@ class JobsPage extends StatelessWidget {
             key: Key('job-${job.id}'),
             child: JobListTile(
               job: job,
-              onTap: () => EditJobPage.show(context, job: job),
+              onTap: () => JobEntriesPage.show(context, job),
             ),
           ),
         );

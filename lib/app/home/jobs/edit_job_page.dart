@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 import 'package:time_tracker_flutter_course/app/home/models/job.dart';
 import 'package:time_tracker_flutter_course/custom_widgets/platform_alert_dialog.dart';
 import 'package:time_tracker_flutter_course/custom_widgets/platform_exception_alert_dialog.dart';
@@ -12,8 +11,11 @@ class EditJobPage extends StatefulWidget {
   final Database database;
   final Job job;
 
-  static Future<void> show(BuildContext context, {Job job}) async {
-    final database = Provider.of<Database>(context);
+  static Future<void> show(
+    BuildContext context, {
+    Database database,
+    Job job,
+  }) async {
     await Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => EditJobPage(
@@ -143,7 +145,8 @@ class _EditJobPageState extends State<EditJobPage> {
   List<Widget> _buildFormChildren() {
     return [
       TextFormField(
-        style: TextStyle(color: Colors.indigoAccent, fontWeight: FontWeight.w600),
+        style:
+            TextStyle(color: Colors.indigoAccent, fontWeight: FontWeight.w600),
         textCapitalization: TextCapitalization.sentences,
         focusNode: _jobFocusNode,
         decoration: InputDecoration(
@@ -158,7 +161,8 @@ class _EditJobPageState extends State<EditJobPage> {
       ),
       SizedBox(height: 25.0),
       TextFormField(
-        style: TextStyle(color: Colors.indigoAccent, fontWeight: FontWeight.w600),
+        style:
+            TextStyle(color: Colors.indigoAccent, fontWeight: FontWeight.w600),
         focusNode: _rateFocusNode,
         decoration: InputDecoration(
           labelText: 'Rate per hour',
