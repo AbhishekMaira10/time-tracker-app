@@ -143,17 +143,27 @@ class _EditJobPageState extends State<EditJobPage> {
   List<Widget> _buildFormChildren() {
     return [
       TextFormField(
+        style: TextStyle(color: Colors.indigoAccent, fontWeight: FontWeight.w600),
+        textCapitalization: TextCapitalization.sentences,
         focusNode: _jobFocusNode,
-        decoration: InputDecoration(labelText: 'Job name'),
+        decoration: InputDecoration(
+          labelText: 'Job name',
+          border: OutlineInputBorder(),
+        ),
         initialValue: _name,
         validator: (value) => value.isNotEmpty ? null : 'Name can\'t be empty',
         onSaved: (value) => _name = value,
         textInputAction: TextInputAction.next,
         onEditingComplete: _nameEditingComplete,
       ),
+      SizedBox(height: 25.0),
       TextFormField(
+        style: TextStyle(color: Colors.indigoAccent, fontWeight: FontWeight.w600),
         focusNode: _rateFocusNode,
-        decoration: InputDecoration(labelText: 'Rate per hour'),
+        decoration: InputDecoration(
+          labelText: 'Rate per hour',
+          border: OutlineInputBorder(),
+        ),
         initialValue: _ratePerHour != null ? '$_ratePerHour' : null,
         keyboardType: TextInputType.numberWithOptions(
           signed: false,
